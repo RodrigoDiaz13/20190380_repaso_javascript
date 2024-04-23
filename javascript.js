@@ -1,70 +1,64 @@
 const favoritos = [
     {
-        nombre: "Jennifer Lawrence",
-        profesion: "cantante y actriz",
-        peliculaDestacadas: "The hunger games", 
-        edad: 40,
-    },
-    {
-        nombre: "Robert Downey Jr.",
+        nombre: "Leonardo DiCaprio",
         profesion: "Actor",
-        peliculaDestacadas: "Iron Man", 
-        edad: 57,
+        peliculaDestacadas: "Inception", 
+        edad: 48,
     },
     {
-        nombre: "Tom Hanks",
-        profesion: "Actor",
-        peliculaDestacadas: "Forrest Gump", 
-        edad: 65,
-    },
-    {
-        nombre: "Meryl Streep",
+        nombre: "Scarlett Johansson",
         profesion: "Actriz",
-        peliculaDestacadas: "The Devil Wears Prada", 
-        edad: 73,
+        peliculaDestacadas: "Lost in Translation", 
+        edad: 38,
     },
     {
-        nombre: "Denzel Washington",
+        nombre: "Brad Pitt",
         profesion: "Actor",
-        peliculaDestacadas: "Training Day", 
-        edad: 68,
+        peliculaDestacadas: "Fight Club", 
+        edad: 59,
     },
     {
-        nombre: "Cate Blanchett",
+        nombre: "Emma Stone",
         profesion: "Actriz",
-        peliculaDestacadas: "Blue Jasmine", 
-        edad: 53,
+        peliculaDestacadas: "La La Land", 
+        edad: 34,
     },
     {
-        nombre: "Anthony Hopkins",
+        nombre: "Johnny Depp",
         profesion: "Actor",
-        peliculaDestacadas: "The Silence of the Lambs", 
-        edad: 85,
+        peliculaDestacadas: "Pirates of the Caribbean", 
+        edad: 59,
     },
     {
-        nombre: "Natalie Portman",
+        nombre: "Angelina Jolie",
         profesion: "Actriz",
-        peliculaDestacadas: "Black Swan", 
-        edad: 41,
+        peliculaDestacadas: "Maleficent", 
+        edad: 46,
     },
     {
-      nombre: "Roberto menjivar.",
-      profesion: "Actor",
-      peliculaDestacadas: "pele", 
-      edad: 57,
-  },
-  {
-      nombre: "Hanks",
-      profesion: "Actor",
-      peliculaDestacadas: "Forrest Gump", 
-      edad: 65,
-  },
-  {
-      nombre: "Meryl Streep",
-      profesion: "Actriz",
-      peliculaDestacadas: "The Devil Wears Prada", 
-      edad: 73,
-  }
+        nombre: "Keanu Reeves",
+        profesion: "Actor",
+        peliculaDestacadas: "The Matrix", 
+        edad: 58,
+    },
+    {
+        nombre: "Jennifer Aniston",
+        profesion: "Actriz",
+        peliculaDestacadas: "Friends (Serie de TV)", 
+        edad: 54,
+    },
+    {
+        nombre: "Will Smith",
+        profesion: "Actor",
+        peliculaDestacadas: "The Pursuit of Happyness", 
+        edad: 54,
+    },
+    {
+        nombre: "Anne Hathaway",
+        profesion: "Actriz",
+        peliculaDestacadas: "Les Misérables", 
+        edad: 39,
+    }
   ];
   
   // Función para crear una tarjeta con información de persona
@@ -90,18 +84,20 @@ const favoritos = [
     contenedorTarjetas.appendChild(tarjetaPersona);
   });
   
-// Obtener chiste de Chuck Norris y mostrar en una tarjeta
-fetch('https://rickandmortyapi.com/api/character/704')
-.then(response => response.json())
-.then(data => {
-    const aja = data.value;
-    const tarjetaaja = document.createElement("div");
-    tarjetaaja.classList.add("bg-green-200", "p-7", "rounded", "text-black", "m-2", "mr-10", "ml-10");
-
-    tarjetaaja.innerHTML = `
-        <h3>beth en traje de calamar:</h3>
-        <p>${aja}</p>
-    `;
-    contenedorTarjetas.appendChild(aja);
-})
-.catch(error => console.error('Error al obtener chiste:', error));
+  fetch('https://rickandmortyapi.com/api/character/704')
+  .then(response => response.json())
+  .then(data => {
+      const character = data; // Accedemos directamente al objeto de personaje
+      const tarjetaPersonaje = document.createElement("div");
+      tarjetaPersonaje.classList.add("bg-green-200", "p-7", "rounded", "text-black", "m-2", "mr-10", "ml-10");
+  
+      tarjetaPersonaje.innerHTML = `
+          <h3>${character.name}</h3>
+          <p>Especie: ${character.species}</p>
+          <p>Género: ${character.gender}</p>
+          <img src="${character.image}" alt="${character.name}">
+      `;
+      contenedorTarjetas.appendChild(tarjetaPersonaje);
+  })
+  .catch(error => console.error('Error al obtener información del personaje:', error));
+  
